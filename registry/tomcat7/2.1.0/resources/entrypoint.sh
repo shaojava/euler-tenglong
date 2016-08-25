@@ -49,7 +49,7 @@ fi
 if [ -z "${APP_NAME}" ]; then
     APP_NAME="default"
 fi
-if [ -d ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE ] && ${TOMCAT_HOME}/webapps/ROOT ]; then
+if [ "ROOT" != ${APP_NAME}" ] && [ -d ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE ] && ${TOMCAT_HOME}/webapps/ROOT ]; then
     mv ${TOMCAT_HOME}/webapps/ROOT ${TOMCAT_HOME}/webapps/${APP_NAME}
     mv ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE ${TOMCAT_HOME}/webapps/ROOT
 fi
