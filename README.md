@@ -4,7 +4,7 @@
 河南腾龙信息工程有限公司客户项目定制
   
   
-## 自定义镜像  
+## 编译镜像  
   
 编译镜像并推送如私有仓库，登陆Docker宿主机，配置好私有仓库，参考下面命令：  
   
@@ -24,7 +24,7 @@
   
 ## 镜像说明  
   
-(1) tomcat7:2.0.0用于自定义镜像，需要放在源码中（maven项目默认src/main/webapp下）编译产物在War的根目录下；参考 模板[template/tomcat/Dockerfile](https://github.com/Primeton-Euler/Euler-Tenglong/blob/master/template/tomcat/Dockerfile)  
+(1)`tomcat7:2.0.0` 用于自定义镜像，需要放在源码中（maven项目默认 `src/main/webapp` 目录下）编译产物在WAR的根目录下；参考模板[template/tomcat/Dockerfile](https://github.com/Primeton-Euler/Euler-Tenglong/blob/master/template/tomcat/Dockerfile)  
   
 	# Example (src/main/webapp/Dockerfile)
 	
@@ -32,7 +32,7 @@
 	
 	ADD . ${TOMCAT_HOME}/webapps/default/
   
-(2) tomcat7:2.1.0，如果源码中不想放入Dockerfile（对于javaee_app类型组件来说）修改Euler-CI数据库运行环境配置，把tomcat镜像版本修改成 `tomcat7:2.1.0`，使用这个镜像，部署后的应用的根目录为 `default`，如果向定义成其他名字，请使用第一种方式——自定义Dockerfile。  
+(2)`tomcat7:2.1.0` 作为镜像模板，如果源码中不想放入 `Dockerfile`（对于 `javaee_app` 类型组件来说）修改 `Euler-CI`数据库运行环境配置，把tomcat镜像版本修改成 `tomcat7:2.1.0`，使用这个镜像，部署后的应用的根目录为 `default`，如果向定义成其他名字，请使用第一种方式——自定义 `Dockerfile`。  
   
   
 ## 其他  
