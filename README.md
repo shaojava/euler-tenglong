@@ -44,4 +44,6 @@
   
 ## 其他  
   
-DevOps平台提供的默认编译镜像的Dockerfile模板是把WAR打入 `${TOMCAT_HOME}/webapps/ROOT` 下，如果使用 `tomcat7:2.0.0`, 或 `tomcat7:2.1.0` 镜像编译的应用，访问根目录会跳转到如 `/default`（通过计算 `${TOMCAT_HOME}/webapps下非ROOT目录`）  
+DevOps平台提供的默认编译镜像的Dockerfile模板是把WAR打入 `${TOMCAT_HOME}/webapps/ROOT` 下，鉴于腾龙使用EOS开发应用，不想部署到默认的ROOT下，所以自定义镜像。基于`tomcat7:2.0.0`, 或 `tomcat7:2.1.0` 基础镜像编译出的应用镜像，部署后访问应用的根目录会跳转到如 `/default`（具体是什么，取决于运行时通过计算 `${TOMCAT_HOME}/webapps下非ROOT目录的一个`）  
+  
+  
