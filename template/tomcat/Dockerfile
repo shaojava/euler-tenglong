@@ -7,8 +7,8 @@
 
 #
 # Note: Copy Dockerfile to WebRoot directory, maven project (webapp directory)
-# tomcat7:1.1.0 TengLong custom version
+# tomcat7:2.0.0 TengLong custom version
 #
-FROM euler-registry.primeton.com/tomcat7:1.1.0
+FROM euler-registry.primeton.com/tomcat7:2.0.0
 
 ADD . ${TOMCAT_HOME}/webapps/default/

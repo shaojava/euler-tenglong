@@ -13,14 +13,6 @@ if [ -z ${TOMCAT_HOME} ]; then
 fi
 
 #
-# Rename application name (EOS)
-#
-if [ -d ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE ] && ${TOMCAT_HOME}/webapps/ROOT ]; then
-    mv ${TOMCAT_HOME}/webapps/ROOT ${TOMCAT_HOME}/webapps/default
-    mv ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE ${TOMCAT_HOME}/webapps/ROOT
-fi
-
-#
 # Java Remote Debug Enable
 #
 if [ -z "${USE_DEBUG_PORT}" ]; then
@@ -32,19 +24,27 @@ fi
 # {"key1": "value1", ..., "keyn": "valuen"}
 #
 TARGET_PATH="${TOMCAT_HOME}/webapps"
-#if [ -d "${TOMCAT_HOME}/webapps/ROOT" ]; then
-#    TARGET_PATH="${TOMCAT_HOME}/webapps/ROOT"
-#elif [ -f "${TOMCAT_HOME}/webapps/ROOT.war" ]; then
-#    TARGET_PATH="${TOMCAT_HOME}/webapps"
-#else
-#    TARGET_PATH="${TOMCAT_HOME}/webapps"
-#fi
+if [ -d "${TOMCAT_HOME}/webapps/ROOT" ]; then
+    TARGET_PATH="${TOMCAT_HOME}/webapps/ROOT"
+elif [ -f "${TOMCAT_HOME}/webapps/ROOT.war" ]; then
+    TARGET_PATH="${TOMCAT_HOME}/webapps"
+else
+    TARGET_PATH="${TOMCAT_HOME}/webapps"
+fi
 if [ -x ${TOMCAT_HOME}/bin/autoconfig.sh ]; then
     ${TOMCAT_HOME}/bin/autoconfig.sh ${TARGET_PATH}
 elif [ -f ${TOMCAT_HOME}/bin/autoconfig.sh ]; then
     /bin/bash ${TOMCAT_HOME}/bin/autoconfig.sh ${TARGET_PATH}
 else
     echo "[`date`] [WARN] ${TOMCAT_HOME}/bin/autoconfig.sh not found."
+fi
+
+#
+# Rename application name (EOS)
+#
+if [ -d ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE ] && ${TOMCAT_HOME}/webapps/ROOT ]; then
+    mv ${TOMCAT_HOME}/webapps/ROOT ${TOMCAT_HOME}/webapps/default
+    mv ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE ${TOMCAT_HOME}/webapps/ROOT
 fi
 
 # if [ -z "${JAVA_OPTS}" ]; then
