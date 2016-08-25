@@ -32,7 +32,7 @@
 	
 	ADD . ${TOMCAT_HOME}/webapps/default/
   
-(2)`tomcat7:2.1.0` 作为镜像模板，如果源码中不想放入 `Dockerfile`（对于 `javaee_app` 类型组件来说）修改 `Euler-CI`数据库运行环境配置，把tomcat镜像版本修改成 `tomcat7:2.1.0`，使用这个镜像，部署后的应用的根目录为 `default`，如果向定义成其他名字，请使用第一种方式——自定义 `Dockerfile`。  
+(2)`tomcat7:2.1.0` 作为镜像模板，如果源码中不想放入 `Dockerfile`（对于 `javaee_app` 类型组件来说）修改 `Euler-CI`数据库运行环境配置，把tomcat镜像版本修改成 `tomcat7:2.1.0`，使用这个镜像，部署后的应用的根目录为 `default`，如果想要定义成其他名字，请使用第一种方式——自定义 `Dockerfile`。  
   
   
 ## 其他  
