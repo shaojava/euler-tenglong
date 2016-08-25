@@ -42,8 +42,15 @@ fi
 #
 # Rename application name (EOS)
 #
+APP_NAME="default"
+if [ -f ${TOMCAT_HOME}/webapps/ROOT/app.name ]; then
+    APP_NAME="`cat ${TOMCAT_HOME}/webapps/ROOT/app.name`"
+fi
+if [ -z "${APP_NAME}" ]; then
+    APP_NAME="default"
+fi
 if [ -d ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE ] && ${TOMCAT_HOME}/webapps/ROOT ]; then
-    mv ${TOMCAT_HOME}/webapps/ROOT ${TOMCAT_HOME}/webapps/default
+    mv ${TOMCAT_HOME}/webapps/ROOT ${TOMCAT_HOME}/webapps/${APP_NAME}
     mv ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE ${TOMCAT_HOME}/webapps/ROOT
 fi
 

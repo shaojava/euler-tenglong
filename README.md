@@ -32,7 +32,7 @@
 	
 	ADD . ${TOMCAT_HOME}/webapps/default/
   
-(2)`tomcat7:2.1.0` 作为镜像模板，如果源码中不想放入 `Dockerfile`（对于 `javaee_app` 类型组件来说）修改 `Euler-CI`数据库表运行环境配置 `CI_RUNTIME_ENV`，把tomcat镜像版本修改成 `tomcat7:2.1.0`，使用这个镜像，部署后的应用的根目录为 `default`，如果想要定义成其他名字，请使用第一种方式——自定义 `Dockerfile`。  
+(2)`tomcat7:2.1.0` 作为镜像模板，如果源码中不想放入 `Dockerfile`（对于 `javaee_app` 类型组件来说）添加一个运行环境，给 `Euler-CI`数据库表 `CI_RUNTIME_ENV` 和 `CI_R_RUNTIME_ENV` 添加一条新记录，tomcat镜像采用 `tomcat7:2.1.0`，使用这个镜像对应用进行打包，部署后的应用的根目录为 `default`，如果想要定义成其他名字可以在WAR的根目录下放一个 `app.name` 文件，内容为 `appName`，否则请使用第一种方式——自定义 `Dockerfile`。 
   
 	INSERT INTO CI_RUNTIME_ENV (RUNTIME_ENV_ID, RUNTIME_ENV_CODE, RUNTIME_ENV_TYPE, RUNTIME_ENV_NAME, 
 		RUNTIME_ENV_DESC, OS, JDK, BACK_END_SERVER, FRONT_END_SERVER, BASE_IMAGE, DEL_FLAG, CREATED_USER, 
@@ -44,7 +44,9 @@
 		RUNTIME_ENV_CODE, DEL_FLAG, CREATED_USER, CREATED_TIME, UPDATED_USER, UPDATED_TIME) 
 		VALUES ("javaeetomcat7", "COMPONENT_TYPE", "javaee_app", "tomcat70", "tomcat7.0", '0', 
 		null, now(), null, null);  
-  
+		
+    
+(3)`tomcat7:1.0.0` 默认的tomcat7镜像模板，把WAR部署到 `${TOMCAT_HOME}/webapps/ROOT` 目录下。  
   
 ## 其他  
   
