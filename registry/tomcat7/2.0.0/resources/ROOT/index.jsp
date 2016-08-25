@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.io.File"%>
+
 <%
 String appName = null;
 File webRoot = new File(System.getenv("TOMCAT_HOME") + "/webapps");
 if (webRoot.exists() && webRoot.isDirectory()) {
-    String[] apps = webRoot.list();
+    File[] apps = webRoot.listFiles();
     if (null != apps && apps.length > 0) {
-        for (String app : apps) {
-            if (!"ROOT".equals(app)) {
-                appName = app;
+        for (File app : apps) {
+            if (!"ROOT".equals(app.getName()) && app.isDirectory()) {
+                appName = app.getName();
                 break;
             }
         }
@@ -22,7 +24,7 @@ if (webRoot.exists() && webRoot.isDirectory()) {
     <title>MicroApp</title>
     <script type="text/javascript">
         <% if (null != appName) { %>
-        windows.location="/<%=appName >"
+        window.location="/<%=appName %>"
         <% } %>
     </script>
 </head>

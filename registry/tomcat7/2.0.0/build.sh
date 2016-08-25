@@ -9,9 +9,9 @@
 
 CONTEXT_PATH=$(cd $(dirname ${0}); pwd)
 
-source ${CONTEXT_PATH}/../common/env.sh
+source ${CONTEXT_PATH}/../../common/env.sh
 
-IMAGE_VERSION="1.1.0"
+IMAGE_VERSION="2.0.0"
 IMAGE_NAME="tomcat7"
 
 #
@@ -22,4 +22,4 @@ main() {
 }
 
 # docker build/tag/push
-source ${CONTEXT_PATH}/../common/template.sh
+source ${CONTEXT_PATH}/../../common/template.sh
