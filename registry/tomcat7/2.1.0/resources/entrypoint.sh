@@ -47,11 +47,15 @@ if [ -f ${TOMCAT_HOME}/webapps/ROOT/app.name ]; then
     APP_NAME="`cat ${TOMCAT_HOME}/webapps/ROOT/app.name`"
 fi
 if [ -z "${APP_NAME}" ]; then
-    APP_NAME="default"
+    APP_NAME="ROOT"
 fi
-if [ "ROOT" != "${APP_NAME}" ] && [ -d ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE ] && [ -d ${TOMCAT_HOME}/webapps/ROOT ]; then
-    mv ${TOMCAT_HOME}/webapps/ROOT ${TOMCAT_HOME}/webapps/${APP_NAME}
-    mv ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE ${TOMCAT_HOME}/webapps/ROOT
+if [ "ROOT" == "${APP_NAME}" ]; then
+    rm -rf ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE
+else
+    if [ -d ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE ] && [ -d ${TOMCAT_HOME}/webapps/ROOT ]; then
+        mv ${TOMCAT_HOME}/webapps/ROOT ${TOMCAT_HOME}/webapps/${APP_NAME}
+        mv ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE ${TOMCAT_HOME}/webapps/ROOT
+    fi
 fi
 
 # if [ -z "${JAVA_OPTS}" ]; then
