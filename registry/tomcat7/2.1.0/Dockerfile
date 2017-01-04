@@ -14,4 +14,6 @@ ADD ./resources/ROOT/ ${TOMCAT_HOME}/webapps/ROOT_TEMPLATE/
 
 ADD ./resources/entrypoint.sh ${TOMCAT_HOME}/bin/
 
+EXPOSE 6200
+
 RUN chmod +x ${TOMCAT_HOME}/bin/entrypoint.sh
